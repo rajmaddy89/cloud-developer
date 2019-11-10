@@ -13,7 +13,7 @@ import { V0MODELS } from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8080; // default port to listen
-  
+
   app.use(bodyParser.json());
 
   //CORS Should be restricted
@@ -23,13 +23,14 @@ import { V0MODELS } from './controllers/v0/model.index';
     next();
   });
 
+  // Simplifies things by routing it to IndexRouter to make desicions
   app.use('/api/v0/', IndexRouter)
 
   // Root URI call
   app.get( "/", async ( req, res ) => {
     res.send( "/api/v0/" );
   } );
-  
+
 
   // Start the Server
   app.listen( port, () => {
